@@ -1,0 +1,16 @@
+@import '../../styles/main';
+
+.count-pill {
+  padding: 0 0.5rem;
+  background-color: $light-gray;
+  border-radius: 1.5rem;
+  font-size: $font-size-small;
+  margin-right: 0.3rem;
+  color: $black;
+}
+
+@media only screen and (max-width: 1366px) {
+  .count-pill {
+    font-size: $font-size-extra-small;
+  }
+}

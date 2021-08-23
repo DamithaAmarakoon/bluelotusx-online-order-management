@@ -1,0 +1,99 @@
+@import '../../styles/main';
+
+.main_wrapper {
+  background-color: $background-blue;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.list_of_orders,
+.view_order {
+  min-height: 95vh;
+  width: 100%;
+  background-color: $white;
+  margin: 1rem;
+  border-radius: 0.2rem;
+}
+
+.list_of_orders {
+  flex-basis: 65%;
+
+  .nav_header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+
+    .nav_items {
+      display: flex;
+      width: fit-content;
+      max-width: 90%;
+
+      .nav_item {
+        display: flex;
+        width: fit-content;
+        align-items: baseline;
+        padding: 0.5rem 0.8rem;
+        min-width: 4rem;
+        border-bottom: 0.2rem solid $white;
+        justify-content: center;
+
+        &:hover {
+          cursor: pointer;
+          color: $medium-blue;
+          border-color: $medium-blue;
+          background-color: $transparent-blue;
+        }
+      }
+
+      .nav_item_selected {
+        border-color: $medium-blue;
+        color: $medium-blue;
+      }
+    }
+
+    .nav_divider {
+      background-color: $light-gray;
+      width: 0.15rem;
+      height: 2.5rem;
+      margin-left: auto;
+    }
+
+    .filter_menu {
+      display: flex;
+      justify-content: flex-end;
+      max-width: 80%;
+
+      svg {
+        margin: 0 0.5rem;
+      }
+    }
+  }
+}
+
+.view_order {
+  flex-basis: 35%;
+  margin-left: 0;
+}
+
+@media only screen and (min-width: 1366px) {
+  .nav_item {
+    font-size: $font-size-medium;
+  }
+}
+
+@media only screen and (max-width: 1365px) {
+  .nav_item {
+    font-size: $font-size-small;
+    padding: 0.5rem 0.6rem !important;
+  }
+
+  .filter_menu {
+    svg {
+      font-size: $font-size-large;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+@import '../../../../styles/main';
+
+#table-head {
+  font-size: small;
+  background-color: $light-gray;
+
+  th {
+    padding: 0.5rem;
+  }
+}
+
+#row {
+  font-size: small;
+  border-left: 0.3rem solid transparent;
+
+  td {
+    padding: 0.5rem;
+  }
+}
