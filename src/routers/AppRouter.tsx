@@ -19,7 +19,7 @@ const AppRouter = (): JSX.Element => {
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute exact path='/orders' component={OrdersPage} />
         <PublicRoute exact path='/login' component={LoginPage} />
-        <Redirect to='/orders' />
+        <Redirect to='/dashboard' />
       </Switch>
     </Router>
   );

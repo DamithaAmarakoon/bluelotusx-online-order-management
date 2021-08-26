@@ -4,7 +4,8 @@ import * as Yup from 'yup';
 import cx from 'classnames';
 import { useHistory } from 'react-router-dom';
 import { Alert } from 'reactstrap';
-import { getUser } from '../../db/users';
+import { loginUser } from '../../actions/auth/auth';
+import { useDispatch } from 'react-redux';
 
 // images
 import logo from '../../assets/images/logo.jpeg';
@@ -20,6 +21,8 @@ interface IFormData {
 
 const LoginPage = (): JSX.Element => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const [invalidLogin, setInvalidLogin] = useState(false);
 
   const initialValues = {
@@ -31,11 +34,10 @@ const LoginPage = (): JSX.Element => {
     values: IFormData,
     actions: FormikHelpers<IFormData>
   ): void => {
-    const data = getUser(values);
-    if (data.status) {
+    if (dispatch(loginUser(values))) {
       setInvalidLogin(false);
       actions.resetForm();
-      history.push('/orders');
+      history.push('/dashboard');
     } else {
       setInvalidLogin(true);
     }

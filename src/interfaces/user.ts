@@ -1,4 +1,5 @@
 interface IUser {
+  id: string;
   userName: string;
   fullName: string;
   password: string;

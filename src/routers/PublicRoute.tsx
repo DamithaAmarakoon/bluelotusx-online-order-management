@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
+import IRootState from '../interfaces/rootState';
+import { useSelector } from 'react-redux';
 
 interface IProps {
   component: () => JSX.Element;
@@ -8,10 +10,14 @@ interface IProps {
 }
 
 const PublicRoute: FC<IProps> = ({ component: Component, ...rest }) => {
-  return (
-    <>
-      <Route {...rest} component={(props: any) => <Component {...props} />} />
-    </>
+  const isAuthenticated = useSelector(
+    (state: IRootState) => !!state.auth.user.id
+  );
+
+  return isAuthenticated ? (
+    <Redirect to='/' />
+  ) : (
+    <Route {...rest} component={Component} />
   );
 };
 
