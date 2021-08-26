@@ -3,7 +3,7 @@ import { Table } from 'reactstrap';
 import { v4 } from 'uuid';
 
 // styles
-import './ProductsTable.module.scss';
+import styles from './ProductsTable.module.scss';
 
 interface IProps {
   products: any;
@@ -13,7 +13,7 @@ const ProductsTable: FC<IProps> = ({ products }) => {
   return (
     <Table size='sm' responsive>
       <thead>
-        <tr id='table-head'>
+        <tr id={styles.table_head}>
           <th>Product</th>
           <th>Quantity</th>
           <th>Total</th>
@@ -22,7 +22,7 @@ const ProductsTable: FC<IProps> = ({ products }) => {
 
       <tbody>
         {products.map((product: any) => (
-          <tr id='row' key={v4()}>
+          <tr id={styles.row} key={v4()}>
             <td>{product.item}</td>
             <td>{product.quantity}</td>
             <td>{product.price}</td>

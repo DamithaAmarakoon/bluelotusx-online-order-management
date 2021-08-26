@@ -1,0 +1,35 @@
+@import '../../styles/main';
+
+.header_wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  border-bottom: 0.15rem solid $light-gray;
+  height: 6vh;
+}
+
+.navbar {
+  .nav_icon {
+    cursor: pointer;
+  }
+}
+
+.header_title {
+  font-size: x-large;
+}
+
+.user_profile {
+  object-fit: cover;
+  width: 2.5rem;
+}
+
+@media only screen and (max-width: 1440px) {
+  .header_wrapper {
+    height: 8vh;
+  }
+
+  .user_profile {
+    width: 2rem;
+  }
+}

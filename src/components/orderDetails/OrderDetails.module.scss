@@ -1,0 +1,182 @@
+@import '../../styles/main';
+
+$col-width: calc(100% / 3);
+$border: 0.1rem solid $medium-gray;
+
+.order_details_container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.title {
+  color: $font-gray;
+  font-size: $font-size-medium;
+  line-height: 1rem;
+}
+
+.content {
+  color: $black;
+  font-weight: normal;
+  margin-top: 0.4rem;
+}
+
+.row1,
+.row3,
+.row5 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+
+.product_id,
+.order_type,
+.placed_at,
+.order_status,
+.customer_details,
+.order_comments,
+.payment_type {
+  padding: 0.5rem 1rem;
+}
+
+.row1 {
+  .product_id,
+  .order_type,
+  .placed_at {
+    flex-basis: $col-width;
+  }
+
+  .order_type {
+    border-left: $border;
+    border-right: $border;
+  }
+}
+
+.row3 {
+  align-items: stretch;
+  border-top: $border;
+  border-bottom: $border;
+
+  .customer_details {
+    flex-basis: 40%;
+    border-right: $border;
+    min-height: 100%;
+  }
+
+  .order_comments {
+    flex-basis: 30%;
+  }
+
+  .status_and_payment_container {
+    flex-basis: 30%;
+    display: flex;
+    flex-direction: column;
+    border-left: $border;
+  }
+
+  .delivery_details {
+    .content {
+      font-weight: bold;
+    }
+  }
+
+  .order_status {
+    border-bottom: $border;
+  }
+}
+
+.row4 {
+  min-height: 12rem;
+}
+
+.row5 {
+  display: flex;
+  flex-direction: row;
+  background-color: $light-gray;
+  margin-top: auto;
+
+  .col1,
+  .col2 {
+    flex-basis: 50%;
+    padding: 0.5rem 1rem;
+    align-self: flex-start;
+
+    .price_item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .border {
+      border-bottom: 0.1rem solid $black;
+      margin-bottom: 0.2rem;
+    }
+  }
+}
+
+.row6 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 4.35rem;
+  align-items: center;
+
+  .print,
+  .kot,
+  .food_next_status {
+    margin: 0 1rem;
+  }
+
+  .print,
+  .kot {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $medium-gray;
+    cursor: pointer;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .print,
+  .kot {
+    margin: 0 0.5rem !important;
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  .row1,
+  .row3,
+  .row5 {
+    font-size: $font-size-medium;
+  }
+
+  .print,
+  .kot {
+    font-size: $font-size-small;
+    margin: 0 0.3rem;
+  }
+}
+
+@media only screen and (max-width: 1365px) {
+  .row1,
+  .row3,
+  .row5 {
+    font-size: $font-size-small;
+  }
+
+  .print,
+  .kot {
+    font-size: $font-size-extra-small;
+    margin: 0 0.2rem;
+  }
+
+  .food_next_status {
+    font-size: $font-size-medium;
+  }
+}

@@ -1,0 +1,62 @@
+@import '../../styles/main';
+
+$row-height: 3rem;
+
+#table_head {
+  th {
+    font-size: $font-size-medium;
+    padding: 0.5rem;
+    color: $font-gray;
+    font-weight: normal;
+  }
+}
+
+#row,
+#selected_row {
+  font-size: $font-size-medium;
+
+  td {
+    padding: 0.5rem;
+    border-right: 0.1rem solid $white;
+    height: $row-height;
+  }
+}
+
+#selected_row {
+  background-color: $lighter-gray;
+}
+
+.order_id {
+  display: flex;
+  border-radius: 0.2rem;
+  padding: 0.1rem;
+  align-items: center;
+}
+
+.placed_at,
+.order_quantity,
+.total_amount {
+  text-align: right;
+}
+
+.quick_actions {
+  border-right: none;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.print_button {
+  margin-right: 0.8rem;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+@media only screen and (max-width: 1420px) {
+  #table_head,
+  #row,
+  #selected_row {
+    font-size: $font-size-small;
+  }
+}

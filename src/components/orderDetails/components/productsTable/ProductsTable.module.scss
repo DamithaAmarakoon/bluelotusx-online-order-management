@@ -1,19 +1,20 @@
 @import '../../../../styles/main';
 
-#table-head {
-  font-size: small;
-  background-color: $light-gray;
-
+#table_head {
   th {
     padding: 0.5rem;
+    font-size: $font-size-medium;
+    color: $font-gray;
+    font-weight: normal;
   }
 }
 
 #row {
-  font-size: small;
   border-left: 0.3rem solid transparent;
 
   td {
+    font-size: $font-size-medium;
     padding: 0.5rem;
+    color: $black;
   }
 }

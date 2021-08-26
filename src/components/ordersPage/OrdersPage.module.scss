@@ -1,24 +1,23 @@
 @import '../../styles/main';
 
 .main_wrapper {
-  background-color: $background-blue;
   width: 100vw;
-  min-height: 100vh;
   display: flex;
   flex-direction: row;
+  min-height: 94vh;
 }
 
 .list_of_orders,
 .view_order {
-  min-height: 95vh;
+  min-height: 100%;
   width: 100%;
   background-color: $white;
-  margin: 1rem;
-  border-radius: 0.2rem;
+  // border-radius: 0.2rem;
 }
 
 .list_of_orders {
-  flex-basis: 65%;
+  flex-basis: 60%;
+  border-right: 0.1rem solid $light-gray;
 
   .nav_header {
     display: flex;
@@ -26,6 +25,7 @@
     width: 100%;
     justify-content: flex-start;
     align-items: center;
+    padding: 0 1rem;
 
     .nav_items {
       display: flex;
@@ -35,11 +35,12 @@
       .nav_item {
         display: flex;
         width: fit-content;
-        align-items: baseline;
+        align-items: center;
         padding: 0.5rem 0.8rem;
         min-width: 4rem;
         border-bottom: 0.2rem solid $white;
         justify-content: center;
+        font-size: $font-size-medium;
 
         &:hover {
           cursor: pointer;
@@ -55,37 +56,42 @@
       }
     }
 
-    .nav_divider {
-      background-color: $light-gray;
-      width: 0.15rem;
-      height: 2.5rem;
-      margin-left: auto;
-    }
-
     .filter_menu {
       display: flex;
       justify-content: flex-end;
       max-width: 80%;
+      margin-left: auto;
 
       svg {
         margin: 0 0.5rem;
+        cursor: pointer;
       }
     }
   }
 }
 
 .view_order {
-  flex-basis: 35%;
+  flex-basis: 40%;
   margin-left: 0;
 }
 
-@media only screen and (min-width: 1366px) {
-  .nav_item {
-    font-size: $font-size-medium;
-  }
+.filter_icon {
+  background-color: $light-blue;
+  color: $white;
+  padding: 0.1rem;
+  border-radius: 0.2rem;
+  margin-right: 0 !important;
 }
 
-@media only screen and (max-width: 1365px) {
+.data_table {
+  padding: 0 1rem;
+}
+
+@media only screen and (max-width: 1440px) {
+  .main_wrapper {
+    min-height: 92vh;
+  }
+
   .nav_item {
     font-size: $font-size-small;
     padding: 0.5rem 0.6rem !important;
@@ -95,5 +101,27 @@
     svg {
       font-size: $font-size-large;
     }
+  }
+}
+
+@media only screen and (max-width: $tab-width) {
+  .list_of_orders {
+    border: none;
+    flex-basis: 100%;
+  }
+
+  .filter_menu {
+    svg {
+      font-size: $font-size-x-large;
+    }
+  }
+
+  .nav_item {
+    font-size: $font-size-medium !important;
+    padding: 0.5rem 0.6rem !important;
+  }
+
+  .filter_icon {
+    margin-right: 0.2rem !important;
   }
 }

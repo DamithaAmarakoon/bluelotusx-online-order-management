@@ -9,10 +9,12 @@ import PublicRoute from './PublicRoute';
 import OrdersPage from '../components/ordersPage/OrdersPage';
 import LoginPage from '../components/loginPage/LoginPage';
 import Dashboard from '../components/dashboard/Dashboard';
+import Header from '../components/header/Header';
 
 const AppRouter = (): JSX.Element => {
   return (
     <Router>
+      <Header />
       <Switch>
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
         <PrivateRoute exact path='/orders' component={OrdersPage} />

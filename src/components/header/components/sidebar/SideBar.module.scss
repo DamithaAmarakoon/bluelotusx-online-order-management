@@ -1,0 +1,72 @@
+@import '../../../../styles/main';
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  width: 20vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: $white;
+}
+
+.show {
+  transition: 350ms;
+  left: 0;
+}
+
+.hide {
+  transition: 250ms ease-in-out;
+  left: -20vw;
+}
+
+.header {
+  height: 6vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  border-bottom: 0.2rem solid $lighter-gray;
+}
+
+.logo {
+  width: 2.5rem;
+  object-fit: cover;
+}
+
+.close_icon {
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 94vh;
+  background-color: $lighter-gray;
+  padding-top: 0.5rem;
+
+  a {
+    text-decoration: none;
+    font-size: large;
+    color: $font-gray;
+    padding: 0.5rem 0;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .header {
+    height: 8vh;
+  }
+
+  .logo {
+    width: 2rem;
+  }
+
+  .content {
+    height: 92vh;
+  }
+}

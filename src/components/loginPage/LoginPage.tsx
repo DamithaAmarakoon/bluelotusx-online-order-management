@@ -1,7 +1,10 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import cx from 'classnames';
+import { useHistory } from 'react-router-dom';
+import { Alert } from 'reactstrap';
+import { getUser } from '../../db/users';
 
 // images
 import logo from '../../assets/images/logo.jpeg';
@@ -16,6 +19,9 @@ interface IFormData {
 }
 
 const LoginPage = (): JSX.Element => {
+  const history = useHistory();
+  const [invalidLogin, setInvalidLogin] = useState(false);
+
   const initialValues = {
     userName: '',
     password: '',
@@ -25,8 +31,14 @@ const LoginPage = (): JSX.Element => {
     values: IFormData,
     actions: FormikHelpers<IFormData>
   ): void => {
-    console.log(values);
-    actions.resetForm();
+    const data = getUser(values);
+    if (data.status) {
+      setInvalidLogin(false);
+      actions.resetForm();
+      history.push('/orders');
+    } else {
+      setInvalidLogin(true);
+    }
   };
 
   const loginSchema = Yup.object().shape({
@@ -39,6 +51,11 @@ const LoginPage = (): JSX.Element => {
       <img src={logo} alt='Blue Lotus Logo' className={styles.company_logo} />
 
       <div className={styles.login_form_wrapper}>
+        {invalidLogin && (
+          <Alert id={styles.invalid_login_alert} color='danger'>
+            You have entered an invalid username or password
+          </Alert>
+        )}
         <Formik
           initialValues={initialValues}
           onSubmit={submitForm}

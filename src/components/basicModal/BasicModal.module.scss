@@ -1,0 +1,18 @@
+@import '../../styles/main';
+
+.modal_body {
+  padding: 0 !important;
+}
+
+.close_icon {
+  position: absolute;
+  top: -0.6rem;
+  right: -0.6rem;
+  background-color: $font-warning-dark;
+  color: $white;
+  border-radius: 50%;
+  padding: 0.2rem;
+  font-size: 2rem !important;
+  cursor: pointer;
+  z-index: 1000;
+}

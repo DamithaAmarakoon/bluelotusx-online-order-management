@@ -1,0 +1,40 @@
+@import '../../styles/main';
+
+.action_buttons {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  border: 0.1rem solid $medium-gray;
+  border-radius: 0.25rem;
+}
+
+.action_button {
+  // width: 90%;
+  padding: 0.4rem 1.5rem;
+  background-color: $white;
+  color: $medium-gray;
+  border: none;
+  border-right: 0.1rem solid $medium-gray;
+  border-radius: 0.25rem;
+  flex-basis: 90%;
+
+  &:hover {
+    background-color: $lighter-gray;
+  }
+}
+
+.toggle_menu {
+  background-color: $white !important;
+  border: none !important;
+  color: $medium-gray !important;
+
+  &:hover {
+    background-color: $lighter-gray;
+  }
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: $lighter-gray !important;
+  }
+}

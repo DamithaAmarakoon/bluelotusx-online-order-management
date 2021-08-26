@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import { v4 } from 'uuid';
 import cx from 'classnames';
+import { useMediaQuery } from 'react-responsive';
 
 // styles
 import styles from './OrdersPage.module.scss';
@@ -14,13 +15,19 @@ import orderType from '../../config/orderType';
 // components
 import OrderCount from '../orderCount/OrderCount';
 import DataTable from '../dataTable/DataTable';
+import SearchBox from './components/searchBox/SearchBox';
 
 // icons
 import SearchIcon from '@material-ui/icons/Search';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import OrderDetails from '../orderDetails/OrderDetails';
+import GLOBAL_MEDIA_QUERIES from '../../config/globalMediaQueries';
+import BasicModal from '../basicModal/BasicModal';
+import FilterBox from './components/filterBox/FilterBox';
 
 const OrdersPage = (): JSX.Element => {
+  const isTablet = useMediaQuery({ query: GLOBAL_MEDIA_QUERIES.tab });
+
   const order = {
     location: 'Sri Jayewardenepura Kotte',
     placed_at: moment().format('LT'),
@@ -40,6 +47,7 @@ const OrdersPage = (): JSX.Element => {
       },
     ],
     orderType: orderType.delivery,
+    quantity: 3,
   };
 
   const orders = [
@@ -50,16 +58,38 @@ const OrdersPage = (): JSX.Element => {
   ];
 
   const navItems = [
-    { count: 0, label: 'New' },
-    { count: 4, label: 'In Progress' },
-    { count: 1, label: 'Awaiting Pickup' },
-    { count: 4, label: 'Dispatched' },
-    { count: 150, label: 'Completed' },
-    { count: 25, label: 'Cancelled' },
+    { count: 5, label: 'Incoming' },
+    { count: 2, label: 'Confirm' },
+    { count: 6, label: 'Ready' },
+    { count: 6, label: 'Dispatch' },
+    { count: 6, label: 'Complete' },
+    { count: 6, label: 'Cancel' },
   ];
 
   const [selectedItem, setSelectedItem] = useState(orders[0]);
   const [selectedNavItem, setSelectedNavItem] = useState(navItems[0]);
+
+  // oder details modal
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleModal = () => setIsOpen(!isOpen);
+
+  // search modal
+  const [searchValue, setSearchValue] = useState('');
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const toggleSearchModal = () => setIsOpenSearch(!isOpenSearch);
+
+  // filter modal
+  const [filterValue, setFilterValue] = useState('');
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const toggleFilterModal = () => setIsOpenFilter(!isOpenFilter);
+
+  const selectItem = (order: any) => {
+    setSelectedItem(order);
+
+    if (isTablet) {
+      toggleModal();
+    }
+  };
 
   return (
     <div className={styles.main_wrapper}>
@@ -81,23 +111,63 @@ const OrdersPage = (): JSX.Element => {
               </div>
             ))}
           </div>
-          <div className={styles.nav_divider} />
           <div className={styles.filter_menu}>
-            <SearchIcon />
-            <FilterListIcon />
+            <SearchIcon
+              onClick={toggleSearchModal}
+              className={styles.search_icon}
+            />
+            <FilterListIcon
+              onClick={toggleFilterModal}
+              className={styles.filter_icon}
+            />
           </div>
         </div>
-        <div>
+        <div className={styles.data_table}>
           <DataTable
             orders={orders}
             selectedItem={selectedItem}
-            setSelectedItem={setSelectedItem}
+            selectItem={selectItem}
           />
         </div>
       </div>
-      <div className={styles.view_order}>
+      {!isTablet && (
+        <div className={styles.view_order}>
+          <OrderDetails order={selectedItem} />
+        </div>
+      )}
+
+      {/* order details modal */}
+      <BasicModal isOpen={isOpen} toggle={toggleModal} size='lg'>
         <OrderDetails order={selectedItem} />
-      </div>
+      </BasicModal>
+
+      {/* search modal */}
+      <BasicModal
+        isOpen={isOpenSearch}
+        toggle={toggleSearchModal}
+        size='md'
+        closeIcon={false}
+      >
+        <SearchBox
+          toggle={toggleSearchModal}
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
+      </BasicModal>
+
+      {/* filter modal */}
+      <BasicModal
+        isOpen={isOpenFilter}
+        toggle={toggleFilterModal}
+        size='md'
+        closeIcon={false}
+      >
+        <FilterBox
+          toggle={toggleFilterModal}
+          filterValue={filterValue}
+          setFilterValue={setFilterValue}
+        />
+      </BasicModal>
     </div>
   );
 };

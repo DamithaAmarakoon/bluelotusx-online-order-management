@@ -1,0 +1,40 @@
+@import '../../../../styles/main';
+
+$padding: 0.5rem 1rem;
+
+.filter_wrapper {
+  width: 100%;
+  padding: 0.4rem;
+
+  form {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    input {
+      width: 90%;
+      padding: $padding;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      width: 10%;
+      padding: $padding;
+      background-color: $white;
+      color: $medium-gray;
+      border: none;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        background-color: $lighter-gray;
+      }
+    }
+  }
+}

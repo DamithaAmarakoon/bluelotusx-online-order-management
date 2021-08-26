@@ -1,18 +1,16 @@
 import React, { FC } from 'react';
+import cx from 'classnames';
 
 // icons
-import BookmarkIcon from '@material-ui/icons/Bookmark';
-import ListAltIcon from '@material-ui/icons/ListAlt';
 import PrintIcon from '@material-ui/icons/Print';
-import BeenhereOutlinedIcon from '@material-ui/icons/BeenhereOutlined';
 import EventAvailableIcon from '@material-ui/icons/EventAvailable';
-import ClearIcon from '@material-ui/icons/Clear';
 
 // styles
-import './OrderDetails.styles.scss';
+import styles from './OrderDetails.module.scss';
 
 // components
 import ProductsTable from './components/productsTable/ProductsTable';
+import ConfirmButton from '../confirmButton/ConfirmButton';
 
 interface IProps {
   order: any;
@@ -20,107 +18,94 @@ interface IProps {
 
 const OrderDetails: FC<IProps> = ({ order }) => {
   return (
-    <div className='order-details-container'>
+    <div className={styles.order_details_container}>
       {/* row 1 */}
-      <div className='row1'>
-        <div className='product-id'>
-          <BookmarkIcon fontSize='small' /> {order.id}
+      <div className={styles.row1}>
+        <div className={styles.product_id}>
+          <div className={styles.title}>Order Id</div>
+          <div className={styles.content}>{order.id}</div>
         </div>
-        <div className='order-type'>
-          <div className='head'>Order Type</div>
-          <div className='content'>{order.orderType}</div>
+        <div className={styles.order_type}>
+          <div className={styles.title}>Order Type</div>
+          <div className={styles.content}>{order.orderType}</div>
         </div>
-        <div className='placed-at'>
-          <div className='head'>Placed On</div>
-          <div className='content'>{order.placed_at}</div>
-        </div>
-      </div>
-
-      {/* row 2 */}
-      <div className='row2'>
-        <div className='location'>
-          <div className='head'>Location</div>
-          <div className='content'>{order.location}</div>
-        </div>
-        <div className='order-status'>
-          <div className='head'>Status</div>
-          <div className='content'>{order.status}</div>
+        <div className={styles.placed_at}>
+          <div className={styles.title}>Placed At</div>
+          <div className={styles.content}>{order.placed_at}</div>
         </div>
       </div>
 
-      <div className='row3'>
-        <div className='customer-details'>
-          <div className='head'>Customer</div>
-          <div className='content'>{order.customer.fullName}</div>
-          <div className='content'>{order.customer.phoneNumber}</div>
+      <div className={styles.row3}>
+        <div className={styles.customer_details}>
+          <div className={styles.title}>Customer</div>
+          <div className={styles.content}>
+            <div>{order.customer.fullName}</div>
+            <div>{order.customer.phoneNumber}</div>
+            <div>{order.location}</div>
+          </div>
         </div>
-        <div className='delivery-details'>
-          <div className='head'>Delivery</div>
-          <div className='content'>{order.riderStatus}</div>
+        <div className={styles.order_comments}>
+          <div className={styles.title}>Order Comment</div>
+          <div className={styles.content}>comment here</div>
+        </div>
+        <div className={styles.status_and_payment_container}>
+          <div className={styles.order_status}>
+            <div className={styles.title}>Current Order Status</div>
+            <div className={styles.content}>Incoming</div>
+          </div>
+          <div className={styles.payment_type}>
+            <div className={styles.title}>Payment Type</div>
+            <div className={styles.content}>Uber Wallet</div>
+          </div>
         </div>
       </div>
 
-      <div className='row4'>
+      <div className={styles.row4}>
         <ProductsTable products={order.products} />
       </div>
 
-      <div className='row5'>
-        <div className='col1'>
-          <div className='price-item'>
+      <div className={styles.row5}>
+        <div className={styles.col1}>
+          <div className={styles.price_item}>
             <span>Sub Total</span>
             <span>$217.00</span>
           </div>
-          <div className='price-item'>
+          <div className={styles.price_item}>
             <span>Discount</span>
             <span>$10.00</span>
           </div>
-          <div className='price-item'>
+          <div className={styles.price_item}>
             <span>Taxes</span>
             <span>$5.00</span>
           </div>
-          <div className='price-item'>
+          <div className={styles.price_item}>
             <span>Charges</span>
             <span>$5.00</span>
           </div>
         </div>
-        <div className='col2'>
-          <div className='price-item fw-bold'>
+        <div className={styles.col2}>
+          <div className={cx(styles.price_item, styles.border)}>
             <span>Total</span>
             <span>$217.00</span>
           </div>
-          <div className='divider' />
-          <div className='price-item'>
+          <div className={styles.price_item}>
             <span>Payment Gateway</span>
             <span>$217.00</span>
           </div>
         </div>
       </div>
 
-      <div className='row6'>
-        <div className='options-col'>
-          <div className='details'>
-            <ListAltIcon fontSize='large' />
-            <div>Details</div>
-          </div>
-          <div className='print'>
-            <PrintIcon fontSize='large' />
-            <div>Print</div>
-          </div>
-          <div className='kot'>
-            <EventAvailableIcon fontSize='large' />
-            <div>KOT</div>
-          </div>
-          <div className='covid'>
-            <BeenhereOutlinedIcon fontSize='large' />
-            <div>Covid</div>
-          </div>
-          <button type='button' className='cancel'>
-            <ClearIcon fontSize='large' />
-            <div>Cancel</div>
-          </button>
+      <div className={styles.row6}>
+        <div className={styles.kot}>
+          <EventAvailableIcon fontSize='medium' />
+          <div>KOT</div>
         </div>
-        <div className='food-next-status'>
-          <button type='button'>Food Ready</button>
+        <div className={styles.print}>
+          <PrintIcon fontSize='medium' />
+          <div>Print</div>
+        </div>
+        <div className={styles.food_next_status}>
+          <ConfirmButton />
         </div>
       </div>
     </div>
